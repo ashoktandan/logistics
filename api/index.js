@@ -2,8 +2,10 @@ var express = require('express')
 var fs = require('fs');
 var cors = require('cors')
 var bodyParser = require('body-parser')
-const MongoClient = require('mongodb').MongoClient;
+var jwt = require('jsonwebtoken');
 var app = express();
+
+const MongoClient = require('mongodb').MongoClient;
 var configdata = JSON.parse(fs.readFileSync('package.json', 'utf-8'))
 global.config = configdata.config;
 
@@ -21,8 +23,14 @@ app.post('/login', async function (req, res) {
     console.info(req.body)
     let dbo = await MongoClient.connect(global.config.mongourl);
     let db = dbo.db();
-    let user = await db.collection("users").findOne({'email':req.body.email,'pass':req.body.pass});
-    res.json(user)
+    let user = await db.collection("users").findOne({ 'email': req.body.email, 'pass': req.body.pass });
+    let token = false;
+    if (user) {
+        token = jwt.sign({
+            data: user.email
+        }, global.config.secret, { expiresIn: 60 * 60 });
+    }
+    res.json(token)
 })
 app.post('/insert', async function (req, res) {
     let dbo = await MongoClient.connect(global.config.mongourl);
