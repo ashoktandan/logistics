@@ -169,8 +169,13 @@ input:checked + .outside .inside {
   height: 10px;
 }
 
+#contact .overlay {
+    padding: 67px 0 40px 0 !important;
+}
 
-
+.section-title {
+    padding: 25px 0 1px 0 !important;
+}
 
 	</style>
 	
@@ -226,7 +231,7 @@ $('#datetimepicker1').datetimepicker();
   <div class="overlay">
     <div class="container">
       <div class="col-md-8 col-md-offset-2 section-title">
-        <h2>Get In Touch</h2>
+        <h2>Book Your Ticket</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam. Sed commodo nibh ante facilisis bibendum dolor apibus lornare diam commodo nibh.</p>
       </div>
       <div class="col-md-8 col-md-offset-2">
@@ -234,29 +239,162 @@ $('#datetimepicker1').datetimepicker();
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
-                <input type="text" id="name" class="form-control" placeholder="Name" required="required">
+                <input type="text" id="Departurecity" class="form-control" placeholder="Departure city" required="required">
                 <!-- <p class="help-block text-danger"></p> -->
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <input type="email" id="email" class="form-control" placeholder="Email" required="required">
+                <input type="text" id="Arrivalcity" class="form-control" placeholder="Arrival city" required="required">
                 <!-- <p class="help-block text-danger"></p> -->
               </div>
             </div>
           </div>
+          <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <input type="text" id="Departuredate" class="form-control" placeholder="Departure Date" required="required">
+                    <!-- <p class="help-block text-danger"></p> -->
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <input type="text" id="Returningdate" class="form-control" placeholder="Returning Date" required="required">
+                    <!-- <p class="help-block text-danger"></p> -->
+                  </div>
+                </div>
+              </div>
+
           <div class="form-group">
             <textarea name="message" id="message" class="form-control" rows="4" placeholder="Message" required></textarea>
             <!-- <p class="help-block text-danger"></p> -->
           </div>
+
+
           <div id="success"></div>
           <button type="submit" class="btn btn-default">Send Message</button>
         </form>
      
+        
+              <div class="form-group">
+                <div class="progress">
+                      <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="70"
+                      aria-valuemin="0" aria-valuemax="100" style="width:50%">
+                        <span class="sr-only">70% Complete</span>
+                      </div>
+                </div>
+                <div class="row">
+                        <div style="color:#fff; text-align:left" class="col-xs-6">In Progress</div>
+                        <div style="color:#fff; text-align:right" class="col-xs-6">Done</div>
+                </div>
+              </div>
+
       </div>
     </div>
   </div>
 </div>
+
+
+<!-- Portfolio Section -->
+<div id="portfolio">
+        <div class="container">
+          <div class="col-md-8 col-md-offset-2 section-title text-center">
+            <h2>Rooms Near Your Location</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam. Sed commodo nibh ante facilisis bibendum dolor apibus lornare diam commodo nibh.</p>
+          </div>
+          <div class="categories">
+            <!-- <ul class="cat">
+              <li>
+                <ol class="type">
+                  <li><a href="#" data-filter="*" class="active">All</a></li>
+                  <li><a href="#" data-filter=".web">Book Here</a></li>
+                  <li><a href="#" data-filter=".app">App Development</a></li>
+                  <li><a href="#" data-filter=".branding">Branding</a></li>
+                </ol>
+              </li>
+            </ul> -->
+            <div class="clearfix"></div>
+          </div>
+          <div class="row">
+            <div class="portfolio-items">
+              <div class="col-sm-6 col-md-3 col-lg-3 web">
+                <div class="portfolio-item">
+                  <div class="hover-bg"> <a href="img/portfolio/1.jpg" title="Project description" rel="prettyPhoto">
+                    <div class="hover-text">
+                      <h4>Ruboid Room</h4>
+                      <small>Book Here</small> </div>
+                    <img src="img/portfolio/1.jpg" height="100%" width="100%" class="img-responsive" alt="Ruboid Room"> </a> </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-md-3 col-lg-3 app">
+                <div class="portfolio-item">
+                  <div class="hover-bg"> <a href="img/portfolio/2.jpg" title="Project description" rel="prettyPhoto">
+                    <div class="hover-text">
+                      <h4>Ruboid Room</h4>
+                      <small>Book Here</small> </div>
+                    <img src="img/portfolio/2.jpg" class="img-responsive" alt="Ruboid Room"> </a> </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-md-3 col-lg-3 web">
+                <div class="portfolio-item">
+                  <div class="hover-bg"> <a href="img/portfolio/3.jpg" title="Project description" rel="prettyPhoto">
+                    <div class="hover-text">
+                      <h4>Ruboid Room</h4>
+                      <small>Book Here</small> </div>
+                    <img src="img/portfolio/3.jpg" class="img-responsive" alt="Ruboid Room"> </a> </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-md-3 col-lg-3 web">
+                <div class="portfolio-item">
+                  <div class="hover-bg"> <a href="img/portfolio/4.jpg" title="Project description" rel="prettyPhoto">
+                    <div class="hover-text">
+                      <h4>Ruboid Room</h4>
+                      <small>Book Here</small> </div>
+                    <img src="img/portfolio/4.jpg" class="img-responsive" alt="Ruboid Room"> </a> </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-md-3 col-lg-3 app">
+                <div class="portfolio-item">
+                  <div class="hover-bg"> <a href="img/portfolio/5.jpg" title="Project description" rel="prettyPhoto">
+                    <div class="hover-text">
+                      <h4>Ruboid Room</h4>
+                      <small>Book Here</small> </div>
+                    <img src="img/portfolio/5.jpg" class="img-responsive" alt="Ruboid Room"> </a> </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-md-3 col-lg-3 branding">
+                <div class="portfolio-item">
+                  <div class="hover-bg"> <a href="img/portfolio/6.jpg" title="Project description" rel="prettyPhoto">
+                    <div class="hover-text">
+                      <h4>Ruboid Room</h4>
+                      <small>Book Here</small> </div>
+                    <img src="img/portfolio/6.jpg" class="img-responsive" alt="Ruboid Room"> </a> </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-md-3 col-lg-3 branding app">
+                <div class="portfolio-item">
+                  <div class="hover-bg"> <a href="img/portfolio/7.jpg" title="Project description" rel="prettyPhoto">
+                    <div class="hover-text">
+                      <h4>Ruboid Room</h4>
+                      <small>Book Here</small> </div>
+                    <img src="img/portfolio/7.jpg" class="img-responsive" alt="Ruboid Room"> </a> </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-md-3 col-lg-3 web">
+                <div class="portfolio-item">
+                  <div class="hover-bg"> <a href="img/portfolio/8.jpg" title="Project description" rel="prettyPhoto">
+                    <div class="hover-text">
+                      <h4>Ruboid Room</h4>
+                      <small>Book Here</small> </div>
+                    <img src="img/portfolio/8.jpg" class="img-responsive" alt="Ruboid Room"> </a> </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
 <div id="footer">
   <div class="container text-center">
     <div class="fnav">
