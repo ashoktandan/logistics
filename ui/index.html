@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Logistic</title>
+<title>Ruboid</title>
 <meta name="description" content="">
 <meta name="author" content="">
 
@@ -24,6 +24,15 @@
 <link rel="stylesheet" type="text/css" href="css/prettyPhoto.css">
 <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700,800,600,300" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="js/modernizr.custom.js"></script>
+
+
+
+<!--  jQuery -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<!-- Isolated Version of Bootstrap, not needed if your site already uses Bootstrap -->
+<link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -85,20 +94,104 @@ header .intro-text {
     padding-bottom: 350px !important;
 }
 
+.form-control {
+    display: block;
+    width: 100%;
+    padding: 6px 12px;
+    margin: 10px 0;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #fff;
+    background-color: rgba(255,255,255,0.2);
+    background-image: none;
+    border: 0;
+    border-radius: 2px;
+}
+
+
+
+label {
+  margin: 2em;
+  display: inline-block;
+  position: relative;
+  padding-left: 40px;
+  cursor: pointer;
+}
+
+.radio-inline {
+  height: 1px;
+  width: 1px;
+  opacity: 0;
+}
+
+.outside {
+  display: inline-block;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  margin-top: -10px;
+  width: 20px;
+  height: 20px;
+  border: 2px solid red;
+  border-radius: 50%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  background: none;
+}
+
+.inside {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  display: inline-block;
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  background: red;
+  left: 3px;
+  top: 3px;
+  -webkit-transform: scale(0, 0);
+          transform: scale(0, 0);
+}
+
+
+
+input:checked + .outside .inside {
+  -webkit-animation: radio-select 0.1s linear;
+          animation: radio-select 0.1s linear;
+  -webkit-transform: scale(1, 1);
+          transform: scale(1, 1);
+}
+.no-transforms input:checked + .outside .inside {
+  width: 10px;
+  height: 10px;
+}
+
+
 
 
 	</style>
 	
 	<script>
 	 $(document).ready(function () {
-    $('.forgot-pass').click(function(event) {
-      $(".pr-wrap").toggleClass("show-pass-reset");
-    }); 
+
+$('#datetimepicker1').datetimepicker();
+
+    // $('.forgot-pass').click(function(event) {
+    //   $(".pr-wrap").toggleClass("show-pass-reset");
+    // }); 
     
-    $('.pass-reset-submit').click(function(event) {
-      $(".pr-wrap").removeClass("show-pass-reset");
-    }); 
+    // $('.pass-reset-submit').click(function(event) {
+    //   $(".pr-wrap").removeClass("show-pass-reset");
+    // }); 
 });
+
+
+          
+       
+
 </script>
 	
 </head>
@@ -109,7 +202,7 @@ header .intro-text {
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-      <a class="navbar-brand page-scroll" href="#page-top"><i class="fa fa-moon-o fa-rotate-90"></i> Logistic</a> </div>
+      <a class="navbar-brand page-scroll" href="#page-top"><i class="fa fa-moon-o fa-rotate-90"></i> Ruboid</a> </div>
     
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -135,18 +228,89 @@ header .intro-text {
           <div class="intro-text">
 		  
 		   <div class="col-xs-12">
-		  <div class="col-xs-0 col-sm-6 col-md-7">
-             <h1>Welcome to <span class="brand">Logistic</span></h1> <br/> <br/> <br/> <br/>
+		  <div class="col-xs-0 col-sm-6 col-md-7"><br/> <br/> <br/>
+             <h1>Welcome to <span class="brand">Ruboid</span></h1> <br/> <br/> <br/> <br/>
             <!-- <p>We are a digital agency that loves what we do</p> -->
             <!-- <a href="#services" class="btn btn-default btn-lg page-scroll">Learn More</a>  -->
 		  </div>
 		   <div class="col-xs-0 col-sm-6 col-md-1">&nbsp;</div>
 		   <div class="col-xs-12 col-sm-6 col-md-4">
-			<div class="wrap">
+
+
+          <div class="col-xs-12">
+              <h4 style="    color: #25BAD0; font-weight: 400;">Sign in or Sign up</h4>
+              <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#signin">Sign in</a></li>
+                <li><a data-toggle="tab" href="#signup">Sign up</a></li>
+              </ul>
+        
+              <div class="tab-content">
+                <div id="signin" class="tab-pane fade in active">
+                    <br/> 
+                  <!-- <form role="Form" method="POST" action="" accept-charset="UTF-8"> -->
+                    <div class="form-group">
+                      <input type="text" name="email" placeholder="Email..." class="form-control">
+                    </div>
+                    <div class="form-group">
+                      <input type="password" name="password" placeholder="Password..." class="form-control">
+                    </div>
+                    <div class="form-group">
+                      <label>
+                        <input type="checkbox" name="remember"> Remember me
+                      </label>
+                    </div><br/>
+                    <div class="form-group" style="clear:both;">
+                      <button type="submit" class="btn btn-default">Submit</button>
+                    </div>
+                  <!-- </form> -->
+                </div>
+                <div id="signup" class="tab-pane fade">
+                    <br/> 
+                  <!-- <form role="Form" method="POST" action="" accept-charset="UTF-8"> -->
+                    <div class="form-group">
+                      <input type="text" name="name" placeholder="Full Name..." class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="email" placeholder="Email..." class="form-control">
+                      </div>
+                      <div class="form-group">
+                          <input type="password" name="password" placeholder="Password..." class="form-control">
+                        </div>
+                        <div class="form-group">
+                          <input type="password" name="password2" placeholder="Verify password..." class="form-control">
+                        </div>
+                        
+                        <!-- <div class="form-group">
+                            <div class='input-group date' id='datetimepicker1'>
+                                <input type='text' class="form-control"  placeholder="Date Of Birth" />
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div> -->
+                        <div class="form-group">
+                            <textarea name="Address" class="form-control" rows="4" placeholder="Address" required></textarea>
+                          </div>
+
+                      <div class="form-group"> 
+                      <label><input type="radio" class="radio-inline" name="radios" value=""><span class="outside"><span class="inside"></span></span>Male</label>
+                      <label><input type="radio"class="radio-inline" name="radios" value=""><span class="outside"><span class="inside"></span></span>Female</label>
+                    </div>
+                  
+                    <div class="form-group">
+                      <button type="submit" class="btn btn-default">Submit</button>
+                    </div>
+                  <!-- </form> -->
+                </div>
+              </div>
+            </div>
+
+
+			<!-- <div class="wrap">
                 <p class="form-title">
                     Sign In</p>
                 <form class="login">
-                <input type="text" placeholder="Username" />
+                <input type="text" placeholder="User Id" />
                 <input type="password" placeholder="Password" />
                 <input type="submit" value="Sign In" class="btn btn-success btn-sm" />
                 <div class="remember-forgot">
@@ -165,7 +329,7 @@ header .intro-text {
                     </div>
                 </div>
                 </form>
-            </div>
+            </div> -->
 			</div>
 			</div>
 			  
@@ -231,7 +395,7 @@ header .intro-text {
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam. Sed commodo nibh ante facilisis bibendum dolor apibus lornare diam commodo nibh.</p>
     </div>
     <div class="categories">
-      <ul class="cat">
+      <!-- <ul class="cat">
         <li>
           <ol class="type">
             <li><a href="#" data-filter="*" class="active">All</a></li>
@@ -240,7 +404,7 @@ header .intro-text {
             <li><a href="#" data-filter=".branding">Branding</a></li>
           </ol>
         </li>
-      </ul>
+      </ul> -->
       <div class="clearfix"></div>
     </div>
     <div class="row">
@@ -378,19 +542,19 @@ header .intro-text {
             <div class="col-md-6">
               <div class="form-group">
                 <input type="text" id="name" class="form-control" placeholder="Name" required="required">
-                <p class="help-block text-danger"></p>
+                <!-- <p class="help-block text-danger"></p> -->
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
                 <input type="email" id="email" class="form-control" placeholder="Email" required="required">
-                <p class="help-block text-danger"></p>
+                <!-- <p class="help-block text-danger"></p> -->
               </div>
             </div>
           </div>
           <div class="form-group">
             <textarea name="message" id="message" class="form-control" rows="4" placeholder="Message" required></textarea>
-            <p class="help-block text-danger"></p>
+            <!-- <p class="help-block text-danger"></p> -->
           </div>
           <div id="success"></div>
           <button type="submit" class="btn btn-default">Send Message</button>
@@ -412,7 +576,7 @@ header .intro-text {
 <div id="footer">
   <div class="container text-center">
     <div class="fnav">
-      <p>Copyright &copy; 2018 Logistic. Designed by <a href="http://www.Dazzle.com" rel="nofollow">Dazzle</a></p>
+      <p>Copyright &copy; 2018 Ruboid. Designed by <a href="http://www.Dazzle.com" rel="nofollow">Dazzle</a></p>
     </div>
   </div>
 </div>
