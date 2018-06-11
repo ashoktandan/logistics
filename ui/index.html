@@ -184,7 +184,8 @@ input:checked + .outside .inside {
              let data = { 'email': $('#loginemail').val(), 'pass': $('#loginpass').val() }
              postcall('login', data).then((result) => {
                if (result) {
-                 localStorage.token = result;
+                 localStorage.token = result.token;
+                 localStorage.user = result;
                  alert('Logged in successfully.')
                }
                else {
