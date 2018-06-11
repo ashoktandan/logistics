@@ -186,7 +186,13 @@ input:checked + .outside .inside {
                if (result) {
                  localStorage.token = result.token;
                  localStorage.user = result;
-                 alert('Logged in successfully.')
+                 if(result.email=='ashoktandan@outlook.com'){
+                  location.href='/Admin/index.html'
+                 }
+                 else{
+                  location.href='/dashboard.html'
+
+                 }
                }
                else {
                  alert('Invalid credentials.Please try again with valid credentials.')
