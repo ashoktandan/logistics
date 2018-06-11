@@ -177,6 +177,9 @@ input:checked + .outside .inside {
     padding: 25px 0 1px 0 !important;
 }
 
+option{
+  background-color: #3c6066 !important;
+}
 	</style>
 	
 	<script>
@@ -239,40 +242,63 @@ $('#datetimepicker1').datetimepicker();
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
-                <input type="text" id="Departurecity" class="form-control" placeholder="Departure city" required="required">
+                 <!-- <input type="time" id="Time1" class="form-control" placeholder="Time1" >  -->
+                <select name="Time" class="form-control">
+                    <option value="Select Time">Select Time</option>
+                    <option value="12/07/2018">12/07/2018</option>
+                    <option value="13/07/2018">12/07/2018</option>
+                    <option value="14/07/2018">12/07/2018</option>
+                    <option value="15/07/2018">12/07/2018</option>
+                  </select>
                 <!-- <p class="help-block text-danger"></p> -->
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <input type="text" id="Arrivalcity" class="form-control" placeholder="Arrival city" required="required">
+                <!-- <input type="text" id="Destination" class="form-control" placeholder="Destination" > -->
+                <select name="Destination" class="form-control">
+                    <option value="Select Destination">Select Destination</option>
+                    <option value="Delhi">Delhi</option>
+                    <option value="Banglore">Banglore</option>
+                    <option value="Lucknow">Lucknow</option>
+                    <option value="Mumbai">Mumbai</option>
+                  </select>
                 <!-- <p class="help-block text-danger"></p> -->
               </div>
             </div>
           </div>
           <div class="row">
-                <div class="col-md-6">
+              <div class="col-md-6">
                   <div class="form-group">
-                    <input type="text" id="Departuredate" class="form-control" placeholder="Departure Date" required="required">
+                    <!-- <input type="text" id="Reason" class="form-control" placeholder="Reason" > -->
+                    <select name="Reason" class="form-control">
+                        <option value="Select Reason">Select Reason</option>
+                        <option value="For Office">For Office Purpose</option>
+                        <option value="For Project">For Project Purpose</option>
+                        <option value="For Client">For Client Purpose</option>
+                      </select>
                     <!-- <p class="help-block text-danger"></p> -->
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
-                    <input type="text" id="Returningdate" class="form-control" placeholder="Returning Date" required="required">
+                    <input type="text" id="Contact" class="form-control" placeholder="Contact" >
                     <!-- <p class="help-block text-danger"></p> -->
                   </div>
                 </div>
               </div>
 
+             
+                 
           <div class="form-group">
-            <textarea name="message" id="message" class="form-control" rows="4" placeholder="Message" required></textarea>
+            <textarea name="message" id="Remark" class="form-control" rows="4" placeholder="Remark" ></textarea>
             <!-- <p class="help-block text-danger"></p> -->
           </div>
 
 
           <div id="success"></div>
-          <button type="submit" class="btn btn-default">Send Message</button>
+          <button type="submit" class="btn btn-default">Submit</button>
+          <button type="submit" class="btn btn-default">Reset</button>
         </form>
      
         
