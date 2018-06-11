@@ -201,11 +201,13 @@
     function getticket() {
       let currentticket = null;
       postcall('gettickets', { 'user': JSON.parse(localStorage.user).email }).then((result) => {
-        if (result[0].status == 'done') {
-          $('.progress-bar-info').css({ "width": "100%" });
-          currentticket = result[0];
-        }else{
-          $('.progress-bar-info').css({ "width": "50%" });
+        if (result.length > 0) {
+          $('#divProgressBar').removeClass('hide')
+          $('#TicketId').text(result[0]._id)
+          if (result[0].status == 'done') {
+            $('.progress-bar-info').css({ "width": "100%" });
+            currentticket = result[0];
+          }
         }
         console.info('result', result)
       })
