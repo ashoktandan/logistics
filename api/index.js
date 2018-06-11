@@ -8,6 +8,7 @@ var app = express();
 const MongoClient = require('mongodb').MongoClient;
 var configdata = JSON.parse(fs.readFileSync('package.json', 'utf-8'))
 global.config = configdata.config;
+var ObjectID = require('mongodb').ObjectID;
 
 app.use(cors())
 app.use(bodyParser.json());
@@ -40,10 +41,33 @@ app.post('/register', async function (req, res) {
     res.json(saveddata)
 })
 
+app.post('/gettickets', async function (req, res) {
+    let dbo = await MongoClient.connect(global.config.mongourl);
+    let db = dbo.db();
+    console.log(req.body)
+    if (req.body.user) {
+        res.json(await db.collection("tickets").find({ 'user': req.body.user }).toArray())
+    } else {
+        res.json(await db.collection("tickets").find({}).toArray())
+    }
+})
+
+app.post('/changeticketstatus', async function (req, res) {
+    let dbo = await MongoClient.connect(global.config.mongourl);
+    let db = dbo.db();
+    console.log(req.body)
+    res.json(await db.collection("tickets").update({ "_id": ObjectID(req.body.ticket) },
+        {
+            $set: { 'status': 'done' }
+        }))
+})
+
 app.post('/addticket', async function (req, res) {
     let dbo = await MongoClient.connect(global.config.mongourl);
     let db = dbo.db();
-    let saveddata = await db.collection("tickets").insert(req.body);
+    let data = req.body;
+    data.status = 'pending'
+    let saveddata = await db.collection("tickets").insert(data);
     res.json(saveddata)
 })
 

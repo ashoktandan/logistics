@@ -192,7 +192,8 @@
         'Contact': $('#Contact').val(),
         'Remark': $('#Remark').val(),
         'Project':$('#Project').val(),
-        'user':JSON.parse(localStorage.user).email
+        'useremail':JSON.parse(localStorage.user).email,
+        'username':JSON.parse(localStorage.user).name
       }
       postcall('addticket', data).then((result) => {
         console.info(result)
