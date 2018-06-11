@@ -17,7 +17,7 @@
   },
   "config": {
     "mongourl": "mongodb://vijaysingh:singhvijay426@ds151530.mlab.com:51530/logistics",
-    "port": 3000,
-    "secret":"jingalala"
+    "port": 3003,
+    "secret": "jingalala"
   }
 }

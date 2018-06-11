@@ -177,25 +177,49 @@ input:checked + .outside .inside {
 
 	</style>
 	
-	<script>
-	 $(document).ready(function () {
-
-$('#datetimepicker1').datetimepicker();
-
-    // $('.forgot-pass').click(function(event) {
-    //   $(".pr-wrap").toggleClass("show-pass-reset");
-    // }); 
-    
-    // $('.pass-reset-submit').click(function(event) {
-    //   $(".pr-wrap").removeClass("show-pass-reset");
-    // }); 
-});
-
-
-          
-       
-
-</script>
+  <script>
+      localStorage.api = 'http://localhost:3003/'
+         $(document).ready(function () {
+           $('#login').click(function () {
+             let data = { 'email': $('#loginemail').val(), 'pass': $('#loginpass').val() }
+             postcall('login', data).then((result) => {
+               if (result) {
+                 localStorage.token = result;
+                 alert('Logged in successfully.')
+               }
+               else {
+                 alert('Invalid credentials.Please try again with valid credentials.')
+               }
+             })
+           })
+           $('#register').click(function () {
+             let data = {
+               'gender': $('input:radio[name=gender]:checked').val(),
+               'name': $('#registername').val(),
+               'email': $('#registeremail').val(),
+               'pass': $('#registerpass').val(),
+               'cpass': $('#registercpass').val(),
+               'address': $('#registeraddress').val()
+             }
+             postcall('register', data).then((result) => {
+               console.info(result)
+             })
+           })
+           $('#datetimepicker1').datetimepicker();
+      
+           // $('.forgot-pass').click(function(event) {
+           //   $(".pr-wrap").toggleClass("show-pass-reset");
+           // }); 
+      
+           // $('.pass-reset-submit').click(function(event) {
+           //   $(".pr-wrap").removeClass("show-pass-reset");
+           // }); 
+         });
+      
+               
+            
+      
+      </script>
 	
 </head>
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
@@ -251,10 +275,11 @@ $('#datetimepicker1').datetimepicker();
                     <br/> 
                   <!-- <form role="Form" method="POST" action="" accept-charset="UTF-8"> -->
                     <div class="form-group">
-                      <input type="text" name="email" placeholder="Email..." class="form-control">
+                      
+                        <input type="text" name="email" placeholder="Email..." class="form-control" id="loginemail">
                     </div>
                     <div class="form-group">
-                      <input type="password" name="password" placeholder="Password..." class="form-control">
+                        <input type="password" name="password" placeholder="Password..." id="loginpass" class="form-control">
                     </div>
                     <div class="form-group">
                       <label>
@@ -262,7 +287,7 @@ $('#datetimepicker1').datetimepicker();
                       </label>
                     </div><br/>
                     <div class="form-group" style="clear:both;">
-                      <button type="submit" class="btn btn-default">Submit</button>
+                        <button type="submit" class="btn btn-default" id="login">Submit</button>
                     </div>
                   <!-- </form> -->
                 </div>
@@ -270,16 +295,16 @@ $('#datetimepicker1').datetimepicker();
                     <br/> 
                   <!-- <form role="Form" method="POST" action="" accept-charset="UTF-8"> -->
                     <div class="form-group">
-                      <input type="text" name="name" placeholder="Full Name..." class="form-control">
+                        <input type="text" name="name" placeholder="Full Name..." id="registername" class="form-control">
                     </div>
                     <div class="form-group">
-                        <input type="text" name="email" placeholder="Email..." class="form-control">
+                        <input type="email" name="email" placeholder="Email..." id="registeremail" class="form-control">
                       </div>
                       <div class="form-group">
-                          <input type="password" name="password" placeholder="Password..." class="form-control">
+                          <input type="password" name="password" placeholder="Password..." id="registerpass" class="form-control">
                         </div>
                         <div class="form-group">
-                          <input type="password" name="password2" placeholder="Verify password..." class="form-control">
+                            <input type="password" name="password2" placeholder="Verify password..." id="registercpass" class="form-control">
                         </div>
                         
                         <!-- <div class="form-group">
@@ -291,16 +316,23 @@ $('#datetimepicker1').datetimepicker();
                             </div>
                         </div> -->
                         <div class="form-group">
-                            <textarea name="Address" class="form-control" rows="4" placeholder="Address" required></textarea>
+                            <textarea name="Address" class="form-control" rows="4" id="registeraddress" placeholder="Address" required></textarea>
                           </div>
 
                       <div class="form-group"> 
-                      <label><input type="radio" class="radio-inline" name="radios" value=""><span class="outside"><span class="inside"></span></span>Male</label>
-                      <label><input type="radio"class="radio-inline" name="radios" value=""><span class="outside"><span class="inside"></span></span>Female</label>
-                    </div>
+                          <input type="radio" class="radio-inline" name="gender" value="male" checked>
+                          <span class="outside">
+                            <span class="inside"></span>
+                          </span>Male</label>
+                        <label>
+                          <input type="radio" class="radio-inline" name="gender" value="female">
+                          <span class="outside">
+                            <span class="inside"></span>
+                          </span>Female</label>
+                      </div>
                   
                     <div class="form-group">
-                      <button type="submit" class="btn btn-default">Submit</button>
+                        <button type="submit" class="btn btn-default" id="register">Submit</button>
                     </div>
                   <!-- </form> -->
                 </div>
@@ -590,5 +622,6 @@ $('#datetimepicker1').datetimepicker();
 <script type="text/javascript" src="js/jqBootstrapValidation.js"></script> 
 <script type="text/javascript" src="js/contact_me.js"></script> 
 <script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript" src="js/http.js"></script>
 </body>
 </html>
