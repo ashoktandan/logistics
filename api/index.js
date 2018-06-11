@@ -40,4 +40,11 @@ app.post('/register', async function (req, res) {
     res.json(saveddata)
 })
 
+app.post('/addticket', async function (req, res) {
+    let dbo = await MongoClient.connect(global.config.mongourl);
+    let db = dbo.db();
+    let saveddata = await db.collection("tickets").insert(req.body);
+    res.json(saveddata)
+})
+
 app.listen(global.config.port)

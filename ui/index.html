@@ -185,7 +185,7 @@ input:checked + .outside .inside {
              postcall('login', data).then((result) => {
                if (result) {
                  localStorage.token = result.token;
-                 localStorage.user = result;
+                 localStorage.user = JSON.stringify(result);
                  if(result.email=='ashoktandan@outlook.com'){
                   location.href='/Admin/index.html'
                  }
