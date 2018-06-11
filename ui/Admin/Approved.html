@@ -54,8 +54,9 @@
                             <i class="menu-icon fa fa-dashboard"></i>Pending List </a>
                     </li>
                     <li class="active">
-                            <a href="Approved.html"> <i class="menu-icon fa fa-dashboard"></i>Approved List </a>
-                        </li>
+                        <a href="Approved.html">
+                            <i class="menu-icon fa fa-dashboard"></i>Approved List </a>
+                    </li>
                     <!-- <h3 class="menu-title">UI elements</h3>
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Components</a>
@@ -237,7 +238,7 @@
 
                             <!-- <a class="nav-link" href="#"><i class="fa fa -cog"></i>Settings</a> -->
 
-                            <a class="nav-link" href="file:///C:/Users/vijaysingh/Desktop/logistics/ui/index.html">
+                            <a class="nav-link" id="logout">
                                 <i class="fa fa-power -off"></i>Logout</a>
                         </div>
                     </div>
@@ -308,6 +309,7 @@
                     <thead>
                         <tr>
                             <th>Name</th>
+                            <th>Email</th>
                             <th>Time</th>
                             <th>Destination</th>
                             <th>Contact</th>
@@ -355,22 +357,33 @@
     <script type="text/javascript" src="../js/http.js"></script>
     <script>
         $(document).ready(function () {
+            $('#logout').click(function () {
+                logout()
+            })
+
+
             postcall('gettickets', { 'user': false }).then((result) => {
                 result.forEach(element => {
                     console.info(element)
-                    $('#tablebody').append(
-                        ` <tr>
+                    try {
+                        if (element.status == 'done') {
+                            $('#tablebody').append(
+                                ` <tr>
                             <td>${element.username}</td>
                             <td>${element.useremail}</td>
                             <td>${element.Time || null}</td>
-                            <td>${element.Remark}</td>
-                            <td>${element.Reason}</td>
                             <td>${element.Destination}</td>
                             <td>${element.Contact}</td>
+                            <td>${element.Reason}</td>
                             <td>${element.Project}</td>
-                        
+                            <td>${element.Remark}</td>
                         </tr>`
-                    );
+                            );
+                        }
+                    }
+                    catch (err) {
+
+                    }
                 });
             })
             $('table').on('click', '.rowbtn', (function () {

@@ -11,3 +11,7 @@ async function postcall(api, data) {
     console.info(`Got response from API =${localStorage.api + api} =`,responsedata)
     return responsedata
 }
+
+function logout(){
+    location.href='/index.html'
+}
