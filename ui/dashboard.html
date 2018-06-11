@@ -243,7 +243,7 @@ $('#datetimepicker1').datetimepicker();
             <div class="col-md-6">
               <div class="form-group">
                  <!-- <input type="time" id="Time1" class="form-control" placeholder="Time1" >  -->
-                <select name="Time" class="form-control">
+                <select name="Time" id="Time" class="form-control">
                     <option value="Select Time">Select Time</option>
                     <option value="12/07/2018">12/07/2018</option>
                     <option value="13/07/2018">12/07/2018</option>
@@ -256,7 +256,7 @@ $('#datetimepicker1').datetimepicker();
             <div class="col-md-6">
               <div class="form-group">
                 <!-- <input type="text" id="Destination" class="form-control" placeholder="Destination" > -->
-                <select name="Destination" class="form-control">
+                <select name="Destination" id="Destination" class="form-control">
                     <option value="Select Destination">Select Destination</option>
                     <option value="Delhi">Delhi</option>
                     <option value="Banglore">Banglore</option>
@@ -271,7 +271,7 @@ $('#datetimepicker1').datetimepicker();
               <div class="col-md-6">
                   <div class="form-group">
                     <!-- <input type="text" id="Reason" class="form-control" placeholder="Reason" > -->
-                    <select name="Reason" class="form-control">
+                    <select name="Reason" id="Reason" class="form-control">
                         <option value="Select Reason">Select Reason</option>
                         <option value="For Office">For Office Purpose</option>
                         <option value="For Project">For Project Purpose</option>
@@ -297,12 +297,13 @@ $('#datetimepicker1').datetimepicker();
 
 
           <div id="success"></div>
-          <button type="submit" class="btn btn-default">Submit</button>
-          <button type="submit" class="btn btn-default">Reset</button>
+          <button type="submit" id="btnSubmit" class="btn btn-default">Submit</button>
+          <button type="submit" id="btnReset" class="btn btn-default">Reset</button>
         </form>
      
         
-              <div class="form-group">
+              <div class="form-group" id="divProgressBar">
+                Your Ticket Id :- <label id="TicketId">12345</label>
                 <div class="progress">
                       <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="70"
                       aria-valuemin="0" aria-valuemax="100" style="width:50%">
