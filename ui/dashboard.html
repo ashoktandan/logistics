@@ -179,11 +179,27 @@
     option {
       background-color: #3c6066 !important;
     }
+
+    .hover-bg .hover-text>h4 {
+    margin-top: -50px !important;
+    opacity: 0;
+    color: #fff;
+    font-weight: 400;
+    -webkit-transform: translateY(100%);
+    transform: translateY(100%);
+    transition: all 0.3s;
+}
+
+.portfolio-item .hover-bg {
+    height: 160px !important;
+    overflow: hidden;
+    position: relative;
+}
   </style>
 
   <script>
     function searchHotels() {
-      postcall('gethotels', { city: 'delhi' }).then((result) => {
+      postcall('gethotels', { city: $('#Destination').val() }).then((result) => {
         let hotels = JSON.parse(result).data.hotels;
         console.info(hotels)
         hotels.forEach(element => {
@@ -192,12 +208,12 @@
             <div class="col-sm-6 col-md-3 col-lg-3 web">
             <div class="portfolio-item">
               <div class="hover-bg">
-                <a href="img/portfolio/1.jpg" title="Ruboid" rel="prettyPhoto">
+                <a href="${element.url}" title="${element.name}" rel="prettyPhoto">
                   <div class="hover-text">
                     <h4>${element.name}</h4>
                     <small>Book Here</small>
                   </div>
-                  <img src="${element.photo}" height="100%" width="100%" class="img-responsive" alt="Ruboid Room"> </a>
+                  <img src="${element.photo}" height="100%" width="100%" class="img-responsive" alt="${element.name}"> </a>
               </div>
             </div>
           </div>
@@ -210,8 +226,7 @@
     $(document).ready(function () {
       // $('.PortfolioDiv').hide()
 
-      searchHotels();
-
+     
 
       $('#btnSubmit').click(function () {
         let data = {
@@ -229,9 +244,11 @@
           $('#divProgressBar').removeClass('hide')
           // $('.PortfolioDiv').show()
           $('#TicketId').text(result.insertedIds[0])
-          // $('.PortfolioDiv').removeClass('hide')
+         
         })
-
+        
+        searchHotels();
+         $('.PortfolioDiv').removeClass('hide');
       })
 
 
@@ -403,7 +420,7 @@
 
 
   <!-- Portfolio Section -->
-  <div id="portfolio" class="PortfolioDiv">
+  <div id="portfolio" class="PortfolioDiv hide">
     <div class="container">
       <div class="col-md-8 col-md-offset-2 section-title text-center">
         <h2>Rooms Near Your Location</h2>
