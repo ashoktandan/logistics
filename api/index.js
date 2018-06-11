@@ -77,12 +77,14 @@ app.post('/register', async function (req, res) {
 app.post('/gettickets', async function (req, res) {
     let dbo = await MongoClient.connect(global.config.mongourl);
     let db = dbo.db();
-    console.log(req.body)
+    let data=null
     if (req.body.user) {
-        res.json(await db.collection("tickets").find({ 'user': req.body.user }).toArray())
+        data=await db.collection("tickets").find({ 'useremail': req.body.user }).sort({"createddate":-1}).limit(1).toArray()
     } else {
-        res.json(await db.collection("tickets").find({}).toArray())
+        data=await db.collection("tickets").find({}).toArray()
     }
+    console.log(data)
+    res.json(data)
 })
 
 app.post('/changeticketstatus', async function (req, res) {
@@ -100,6 +102,7 @@ app.post('/addticket', async function (req, res) {
     let db = dbo.db();
     let data = req.body;
     data.status = 'pending'
+    data.createddate =new Date()
     let saveddata = await db.collection("tickets").insert(data);
     res.json(saveddata)
 })

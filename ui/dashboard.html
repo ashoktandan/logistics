@@ -181,36 +181,35 @@
     }
 
     .hover-bg .hover-text>h4 {
-    margin-top: -50px !important;
-    opacity: 0;
-    color: #fff;
-    font-weight: 400;
-    -webkit-transform: translateY(100%);
-    transform: translateY(100%);
-    transition: all 0.3s;
-}
+      margin-top: -50px !important;
+      opacity: 0;
+      color: #fff;
+      font-weight: 400;
+      -webkit-transform: translateY(100%);
+      transform: translateY(100%);
+      transition: all 0.3s;
+    }
 
-.portfolio-item .hover-bg {
-    height: 160px !important;
-    overflow: hidden;
-    position: relative;
-}
+    .portfolio-item .hover-bg {
+      height: 160px !important;
+      overflow: hidden;
+      position: relative;
+    }
   </style>
 
   <script>
-    function getticket(){
-      let currentticket=null;
+    function getticket() {
+      let currentticket = null;
       postcall('gettickets', { 'user': JSON.parse(localStorage.user).email }).then((result) => {
-                result.forEach(element => {
-                  if(element.status=='done'){
-                    $('.progress-bar-info').css({"width":"100%"});
-                    currentticket=element;
-                  }
-  })
-
-});
-}
-
+        if (result[0].status == 'done') {
+          $('.progress-bar-info').css({ "width": "100%" });
+          currentticket = result[0];
+        }else{
+          $('.progress-bar-info').css({ "width": "50%" });
+        }
+        console.info('result', result)
+      })
+    }
     function searchHotels() {
       postcall('gethotels', { city: $('#Destination').val() }).then((result) => {
         let hotels = JSON.parse(result).data.hotels;
@@ -239,7 +238,7 @@
     $(document).ready(function () {
       // $('.PortfolioDiv').hide()
 
-     getticket()
+      getticket()
 
       $('#btnSubmit').click(function () {
         let data = {
@@ -258,11 +257,11 @@
           $('#divProgressBar').removeClass('hide')
           // $('.PortfolioDiv').show()
           $('#TicketId').text(result.insertedIds[0])
-         
+
         })
-        
+
         searchHotels();
-         $('.PortfolioDiv').removeClass('hide');
+        $('.PortfolioDiv').removeClass('hide');
       })
 
 
@@ -417,8 +416,9 @@
             </div>
             <br/>
             <div class="progress">
-              <div class="progress-bar progress-bar-info" id="progressbar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:50%">
-</div>
+              <div class="progress-bar progress-bar-info" id="progressbar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"
+                style="width:50%">
+              </div>
             </div>
             <div class="row">
               <div style="color:#fff; text-align:left" class="col-xs-6">In Progress</div>
