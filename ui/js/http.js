@@ -8,7 +8,7 @@ async function postcall(api, data) {
         }
     })
     let responsedata = await response.json()
-    console.info(`Got response from API =${localStorage.api + api} =`,responsedata)
+   // console.info(`Got response from API =${localStorage.api + api} =`,responsedata)
     return responsedata
 }
 

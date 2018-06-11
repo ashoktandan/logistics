@@ -182,40 +182,69 @@
   </style>
 
   <script>
+    function searchHotels() {
+      postcall('gethotels', { city: 'delhi' }).then((result) => {
+        let hotels = JSON.parse(result).data.hotels;
+        console.info(hotels)
+        hotels.forEach(element => {
+          $('#hotels').append(
+            `
+            <div class="col-sm-6 col-md-3 col-lg-3 web">
+            <div class="portfolio-item">
+              <div class="hover-bg">
+                <a href="img/portfolio/1.jpg" title="Ruboid" rel="prettyPhoto">
+                  <div class="hover-text">
+                    <h4>${element.name}</h4>
+                    <small>Book Here</small>
+                  </div>
+                  <img src="${element.photo}" height="100%" width="100%" class="img-responsive" alt="Ruboid Room"> </a>
+              </div>
+            </div>
+          </div>
+          `
+          )
+        });
+      })
+    }
+
     $(document).ready(function () {
       // $('.PortfolioDiv').hide()
+
+      searchHotels();
+
+
       $('#btnSubmit').click(function () {
         let data = {
-        'Time': $('#Time').val(),
-        'Destination': $('#Destination').val(),
-        'Reason': $('#Reason').val(),
-        'Contact': $('#Contact').val(),
-        'Remark': $('#Remark').val(),
-        'Project':$('#Project').val(),
-        'useremail':JSON.parse(localStorage.user).email,
-        'username':JSON.parse(localStorage.user).name
-      }
-      postcall('addticket', data).then((result) => {
-        console.info(result)
-        $('#divProgressBar').removeClass('hide')
-        // $('.PortfolioDiv').show()
-        $('#TicketId').text(result.insertedIds[0])
-        // $('.PortfolioDiv').removeClass('hide')
-      })
+          'Time': $('#Time').val(),
+          'Destination': $('#Destination').val(),
+          'Reason': $('#Reason').val(),
+          'Contact': $('#Contact').val(),
+          'Remark': $('#Remark').val(),
+          'Project': $('#Project').val(),
+          'useremail': JSON.parse(localStorage.user).email,
+          'username': JSON.parse(localStorage.user).name
+        }
+        postcall('addticket', data).then((result) => {
+          console.info(result)
+          $('#divProgressBar').removeClass('hide')
+          // $('.PortfolioDiv').show()
+          $('#TicketId').text(result.insertedIds[0])
+          // $('.PortfolioDiv').removeClass('hide')
+        })
 
       })
-      
 
-          $('#datetimepicker1').datetimepicker();
 
-          // $('.forgot-pass').click(function(event) {
-          //   $(".pr-wrap").toggleClass("show-pass-reset");
-          // }); 
+      // $('#datetimepicker1').datetimepicker();
 
-          // $('.pass-reset-submit').click(function(event) {
-          //   $(".pr-wrap").removeClass("show-pass-reset");
-          // }); 
-        });
+      // $('.forgot-pass').click(function(event) {
+      //   $(".pr-wrap").toggleClass("show-pass-reset");
+      // }); 
+
+      // $('.pass-reset-submit').click(function(event) {
+      //   $(".pr-wrap").removeClass("show-pass-reset");
+      // }); 
+    });
 
 
 
@@ -256,6 +285,7 @@
     </div>
     <!-- /.container-fluid -->
   </nav>
+
 
 
   <!-- Contact Section -->
@@ -320,25 +350,25 @@
 
 
             <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                      <!-- <input type="text" id="Reason" class="form-control" placeholder="Reason" > -->
-                      <select name="Project" id="Project" class="form-control">
-                        <option value="Select Project">Select Project</option>
-                        <option value="GROB">GROB</option>
-                        <option value="PCRCO">PCRCO</option>
-                        <option value="HOB">HOB</option>
-                      </select>
-                      <!-- <p class="help-block text-danger"></p> -->
-                    </div>
-                  </div>
-                <div class="col-md-6">
-            <div class="form-group">
-              <textarea name="message" id="Remark" class="form-control" rows="4" placeholder="Remark"></textarea>
-              <!-- <p class="help-block text-danger"></p> -->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <!-- <input type="text" id="Reason" class="form-control" placeholder="Reason" > -->
+                  <select name="Project" id="Project" class="form-control">
+                    <option value="Select Project">Select Project</option>
+                    <option value="GROB">GROB</option>
+                    <option value="PCRCO">PCRCO</option>
+                    <option value="HOB">HOB</option>
+                  </select>
+                  <!-- <p class="help-block text-danger"></p> -->
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <textarea name="message" id="Remark" class="form-control" rows="4" placeholder="Remark"></textarea>
+                  <!-- <p class="help-block text-danger"></p> -->
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
 
             <div id="success"></div>
             <button type="button" id="btnSubmit" class="btn btn-default">Submit</button>
@@ -348,9 +378,13 @@
 
           <div class="form-group hide" id="divProgressBar">
             <div style="clear:both; color:#62ff00;">
-              Your Ticket Id  
-              <div id="TicketId"></div><div id="divRefresh" style="cursor: pointer;"><img src="./img/refreshicon.png" height="25px" width="25px"/></div>
-          </div><br/>
+              Your Ticket Id
+              <div id="TicketId"></div>
+              <div id="divRefresh" style="cursor: pointer;">
+                <img src="./img/refreshicon.png" height="25px" width="25px" />
+              </div>
+            </div>
+            <br/>
             <div class="progress">
               <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:50%">
                 <span class="sr-only">70% Complete</span>
@@ -369,7 +403,7 @@
 
 
   <!-- Portfolio Section -->
-  <div id="portfolio" class="PortfolioDiv hide" >
+  <div id="portfolio" class="PortfolioDiv">
     <div class="container">
       <div class="col-md-8 col-md-offset-2 section-title text-center">
         <h2>Rooms Near Your Location</h2>
@@ -390,103 +424,8 @@
         <div class="clearfix"></div>
       </div>
       <div class="row">
-        <div class="portfolio-items">
-          <div class="col-sm-6 col-md-3 col-lg-3 web">
-            <div class="portfolio-item">
-              <div class="hover-bg">
-                <a href="img/portfolio/1.jpg" title="Ruboid" rel="prettyPhoto">
-                  <div class="hover-text">
-                    <h4>Ruboid Room</h4>
-                    <small>Book Here</small>
-                  </div>
-                  <img src="img/portfolio/1.jpg" height="100%" width="100%" class="img-responsive" alt="Ruboid Room"> </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-md-3 col-lg-3 app">
-            <div class="portfolio-item">
-              <div class="hover-bg">
-                <a href="img/portfolio/2.jpg" title="Ruboid" rel="prettyPhoto">
-                  <div class="hover-text">
-                    <h4>Ruboid Room</h4>
-                    <small>Book Here</small>
-                  </div>
-                  <img src="img/portfolio/2.jpg" class="img-responsive" alt="Ruboid Room"> </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-md-3 col-lg-3 web">
-            <div class="portfolio-item">
-              <div class="hover-bg">
-                <a href="img/portfolio/3.jpg" title="Ruboid" rel="prettyPhoto">
-                  <div class="hover-text">
-                    <h4>Ruboid Room</h4>
-                    <small>Book Here</small>
-                  </div>
-                  <img src="img/portfolio/3.jpg" class="img-responsive" alt="Ruboid Room"> </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-md-3 col-lg-3 web">
-            <div class="portfolio-item">
-              <div class="hover-bg">
-                <a href="img/portfolio/4.jpg" title="Ruboid" rel="prettyPhoto">
-                  <div class="hover-text">
-                    <h4>Ruboid Room</h4>
-                    <small>Book Here</small>
-                  </div>
-                  <img src="img/portfolio/4.jpg" class="img-responsive" alt="Ruboid Room"> </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-md-3 col-lg-3 app">
-            <div class="portfolio-item">
-              <div class="hover-bg">
-                <a href="img/portfolio/5.jpg" title="Ruboid" rel="prettyPhoto">
-                  <div class="hover-text">
-                    <h4>Ruboid Room</h4>
-                    <small>Book Here</small>
-                  </div>
-                  <img src="img/portfolio/5.jpg" class="img-responsive" alt="Ruboid Room"> </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-md-3 col-lg-3 branding">
-            <div class="portfolio-item">
-              <div class="hover-bg">
-                <a href="img/portfolio/6.jpg" title="Ruboid" rel="prettyPhoto">
-                  <div class="hover-text">
-                    <h4>Ruboid Room</h4>
-                    <small>Book Here</small>
-                  </div>
-                  <img src="img/portfolio/6.jpg" class="img-responsive" alt="Ruboid Room"> </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-md-3 col-lg-3 branding app">
-            <div class="portfolio-item">
-              <div class="hover-bg">
-                <a href="img/portfolio/7.jpg" title="Ruboid" rel="prettyPhoto">
-                  <div class="hover-text">
-                    <h4>Ruboid Room</h4>
-                    <small>Book Here</small>
-                  </div>
-                  <img src="img/portfolio/7.jpg" class="img-responsive" alt="Ruboid Room"> </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-md-3 col-lg-3 web">
-            <div class="portfolio-item">
-              <div class="hover-bg">
-                <a href="img/portfolio/8.jpg" title="Ruboid" rel="prettyPhoto">
-                  <div class="hover-text">
-                    <h4>Ruboid Room</h4>
-                    <small>Book Here</small>
-                  </div>
-                  <img src="img/portfolio/8.jpg" class="img-responsive" alt="Ruboid Room"> </a>
-              </div>
-            </div>
-          </div>
+        <div class="" id="hotels">
+
         </div>
       </div>
     </div>

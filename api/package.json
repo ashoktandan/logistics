@@ -13,7 +13,8 @@
     "cors": "^2.8.4",
     "express": "^4.16.3",
     "jsonwebtoken": "^8.2.2",
-    "mongodb": "^3.0.10"
+    "mongodb": "^3.0.10",
+    "request": "*"
   },
   "config": {
     "mongourl": "mongodb://vijaysingh:singhvijay426@ds151530.mlab.com:51530/logistics",
